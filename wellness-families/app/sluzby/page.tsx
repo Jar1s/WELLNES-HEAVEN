@@ -54,10 +54,6 @@ const services = [
   },
 ];
 
-const bookiaLink = process.env.NEXT_PUBLIC_BOOKIA_ID
-  ? `https://bookia.sk/rezervacia/${process.env.NEXT_PUBLIC_BOOKIA_ID}`
-  : '/rezervacia';
-
 export default function SluzbyPage() {
   return (
     <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
@@ -122,14 +118,12 @@ export default function SluzbyPage() {
           >
             Zobraziť cenník
           </Link>
-          <a
-            href={bookiaLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/rezervacia"
             className="inline-block bg-transparent text-[#2c2c2c] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#f5f3f0] transition-all border-2 border-[#2c2c2c] min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
           >
             Rezervovať teraz
-          </a>
+          </Link>
         </div>
       </div>
     </div>
