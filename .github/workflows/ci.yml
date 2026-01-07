@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-adults:
+    name: Build Wellness Adults
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: wellness-adults/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: wellness-adults
+        run: npm ci
+      
+      - name: Run linter
+        working-directory: wellness-adults
+        run: npm run lint
+      
+      - name: Build project
+        working-directory: wellness-adults
+        run: npm run build
+
+  build-families:
+    name: Build Wellness Families
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: wellness-families/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: wellness-families
+        run: npm ci
+      
+      - name: Run linter
+        working-directory: wellness-families
+        run: npm run lint
+      
+      - name: Build project
+        working-directory: wellness-families
+        run: npm run build
+
