@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   description: 'Poznajte Wellness Heaven – súkromný wellness v Bratislave. Súkromné prostredie, individuálny prístup a profesionálny personál.',
 };
 
-const bookiaLink = process.env.NEXT_PUBLIC_BOOKIA_ID
-  ? `https://bookia.sk/rezervacia/${process.env.NEXT_PUBLIC_BOOKIA_ID}`
-  : '/rezervacia';
-
 export default function ONasPage() {
   return (
     <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
@@ -66,14 +62,12 @@ export default function ONasPage() {
             </div>
 
             <div className="text-center pt-8">
-              <a
-                href={bookiaLink}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/rezervacia"
                 className="inline-block bg-[#c97d60] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 Rezervovať návštevu
-              </a>
+              </Link>
             </div>
           </div>
         </div>
