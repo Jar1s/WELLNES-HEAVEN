@@ -7,11 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showVideo, setShowVideo] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const [isMounted] = useState(true);
 
   useEffect(() => {
     if (videoRef.current && isMounted) {
@@ -35,7 +31,7 @@ export default function Hero() {
             // Video not available, show image
             setShowVideo(false);
           }
-        } catch (error) {
+        } catch {
           setShowVideo(false);
         }
       };

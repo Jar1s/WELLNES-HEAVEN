@@ -15,28 +15,13 @@ export default function BookiaWidget({
 }: BookiaWidgetProps) {
   const [isLoading, setIsLoading] = useState(true);
 
-  // If embedUrl is provided, use iframe approach
-  if (embedUrl) {
-    return (
-      <div className={className}>
-        <iframe
-          src={embedUrl}
-          className="w-full min-h-[600px] border-0 rounded-lg"
-          title="Bookia Rezervácia"
-          allow="payment"
-          onLoad={() => setIsLoading(false)}
-        />
-        {isLoading && (
-          <div className="min-h-[600px] flex items-center justify-center">
-            <p className="text-gray-500">Načítava sa rezervačný systém...</p>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // Widget script approach
+  // Widget script approach - must be called unconditionally
   useEffect(() => {
+    // If embedUrl is provided, skip widget script
+    if (embedUrl) {
+      setIsLoading(false);
+      return;
+    }
     const actualBookiaId = bookiaId || process.env.NEXT_PUBLIC_BOOKIA_ID;
     
     if (!actualBookiaId || actualBookiaId === 'YOUR_BOOKIA_ID') {
@@ -76,9 +61,29 @@ export default function BookiaWidget({
         document.body.removeChild(scriptToRemove);
       }
     };
-  }, [bookiaId]);
+  }, [bookiaId, embedUrl]);
 
   const actualBookiaId = bookiaId || process.env.NEXT_PUBLIC_BOOKIA_ID;
+
+  // If embedUrl is provided, use iframe approach
+  if (embedUrl) {
+    return (
+      <div className={className}>
+        <iframe
+          src={embedUrl}
+          className="w-full min-h-[600px] border-0 rounded-lg"
+          title="Bookia Rezervácia"
+          allow="payment"
+          onLoad={() => setIsLoading(false)}
+        />
+        {isLoading && (
+          <div className="min-h-[600px] flex items-center justify-center">
+            <p className="text-gray-500">Načítava sa rezervačný systém...</p>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   if (!actualBookiaId || actualBookiaId === 'YOUR_BOOKIA_ID') {
     return (

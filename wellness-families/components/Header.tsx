@@ -24,10 +24,10 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!isMobile) {
+    if (!isMobile && isMenuOpen) {
       setIsMenuOpen(false);
     }
-  }, [isMobile]);
+  }, [isMobile, isMenuOpen]);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

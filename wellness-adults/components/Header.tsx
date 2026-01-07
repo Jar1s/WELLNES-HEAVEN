@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,10 +15,10 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!isMobile) {
+    if (!isMobile && isMenuOpen) {
       setIsMenuOpen(false);
     }
-  }, [isMobile]);
+  }, [isMobile, isMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
