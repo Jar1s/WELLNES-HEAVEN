@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import BookiaServiceWidget from "@/components/BookiaServiceWidget";
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Rezervácia - Wellness Heaven | Online rezervácia',
@@ -22,9 +22,23 @@ export default function RezervaciaPage() {
             Vyberte si dátum a čas pre vašu návštevu
           </p>
         </div>
-        
-        <div className="max-w-6xl mx-auto">
-          <BookiaServiceWidget />
+
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 sm:p-10 border border-[#e8e6e3] text-center space-y-6">
+          <p className="text-lg sm:text-xl text-[#6b6b6b] leading-relaxed">
+            Online rezervačný systém je dočasne nedostupný. Rezervujte prosím cez náš kontaktný formulár alebo email.
+          </p>
+          <div className="space-y-3 text-[#2c2c2c] text-base sm:text-lg">
+            <p className="font-semibold">Email: <a className="text-[#c97d60] hover:text-[#b86a4d]" href="mailto:inforuzinov@wellmass.sk">inforuzinov@wellmass.sk</a></p>
+            <p className="text-[#6b6b6b]">Adresa: Tomášikova, 821 01 Bratislava</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4">
+            <Link
+              href="/kontakt"
+              className="inline-block bg-[#c97d60] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
+            >
+              Kontaktovať nás
+            </Link>
+          </div>
         </div>
       </div>
     </div>
