@@ -61,7 +61,7 @@ export default function Hero() {
   }, [isMounted]);
 
   return (
-    <section className="relative min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden bg-[#faf9f7]">
+    <section className="relative min-h-screen lg:min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden bg-[#faf9f7]">
       {/* Mobile background image */}
       <div className="absolute inset-0 lg:hidden">
         <Image
@@ -76,7 +76,7 @@ export default function Hero() {
       </div>
 
       {/* Video / Image Side for desktop */}
-      <div className="hidden lg:block lg:w-1/2 min-h-screen relative order-1">
+      <div className="hidden lg:block lg:w-1/2 h-screen relative order-1">
         {/* Fallback image */}
         <Image
           src="/images/new-photos/photo-00.jpg"
@@ -118,8 +118,8 @@ export default function Hero() {
       </div>
       
       {/* Content Side */}
-      <div className="relative z-10 w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-16 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:py-0 order-1 lg:order-2">
-        <div className="max-w-2xl w-full bg-white/85 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg lg:bg-transparent lg:backdrop-blur-0 lg:rounded-none lg:p-0 lg:shadow-none text-center">
+      <div className="relative z-10 w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-16 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 lg:py-0 order-1 lg:order-2 lg:h-screen">
+        <div className="max-w-2xl w-full bg-white/85 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg lg:bg-transparent lg:backdrop-blur-0 lg:rounded-none lg:p-0 lg:shadow-none text-center lg:space-y-2">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-[#2c2c2c] mb-3 sm:mb-5 leading-tight">
             Wellness Heaven
           </h1>
