@@ -22,17 +22,19 @@ const playfair = Playfair_Display({
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 const gadsId = process.env.NEXT_PUBLIC_GADS_ID;
 const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://wellnes-heaven.vercel.app";
 
 export const metadata: Metadata = {
   title: "Wellness Heaven - Privátny Wellness | Bratislava",
   description: "Privátny wellness v Bratislave – Ružinov. Súkromný wellness pre dvoch alebo partiu priateľov. Sauna, masáže, vírivka.",
-  metadataBase: new URL("https://wellness-heaven.vercel.app"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Wellness Heaven - Privátny Wellness | Bratislava",
     description: "Privátny wellness v Bratislave – Ružinov. Súkromný wellness pre dvoch alebo partiu priateľov. Sauna, masáže, vírivka.",
     images: [
       {
-        url: "/images/Photo 11.png",
+        url: `${siteUrl}/images/Photo%2011.png`,
         width: 1200,
         height: 630,
         alt: "Wellness Heaven lounge",
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wellness Heaven - Privátny Wellness | Bratislava",
     description: "Privátny wellness v Bratislave – Ružinov. Súkromný wellness pre dvoch alebo partiu priateľov. Sauna, masáže, vírivka.",
-    images: ["/images/Photo 11.png"],
+    images: [`${siteUrl}/images/Photo%2011.png`],
   },
 };
 

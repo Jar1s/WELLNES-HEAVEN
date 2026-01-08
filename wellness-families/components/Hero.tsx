@@ -118,8 +118,8 @@ export default function Hero() {
       </div>
       
       {/* Content Side */}
-      <div className="relative z-10 w-full lg:flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-16 pt-16 pb-16 sm:pt-20 sm:pb-20 md:pt-24 md:pb-24 lg:py-20 order-1 lg:order-2 min-h-[80vh] lg:min-h-screen">
-        <div className="max-w-2xl w-full bg-white/85 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg lg:bg-transparent lg:backdrop-blur-0 lg:rounded-none lg:p-0 lg:shadow-none text-center lg:space-y-2">
+      <div className="relative z-10 w-full lg:flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-12 sm:py-16 md:py-20 lg:py-20 order-1 lg:order-2 min-h-[100vh] lg:min-h-screen">
+        <div className="max-w-2xl w-full bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg lg:bg-transparent lg:backdrop-blur-0 lg:rounded-none lg:p-0 lg:shadow-none text-center lg:space-y-2">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-[#2c2c2c] mb-3 sm:mb-5 leading-tight">
             Wellness Heaven
           </h1>
