@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 
 interface FaqItem {
   question: string;
@@ -54,6 +53,21 @@ const faqs: FaqItem[] = [
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const Chevron = ({ open }: { open: boolean }) => (
+    <svg
+      className={`w-5 h-5 text-[#c97d60] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+
   return (
     <section className="py-14 sm:py-16 md:py-20">
       <div className="text-center mb-8 sm:mb-10">
@@ -75,12 +89,7 @@ export default function Faq() {
                 aria-expanded={isOpen}
               >
                 <span className="pr-4">{faq.question}</span>
-                <ChevronDown
-                  className={`w-5 h-5 text-[#c97d60] transition-transform duration-200 ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                  aria-hidden="true"
-                />
+                <Chevron open={isOpen} />
               </button>
               {isOpen && (
                 <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-[#6b6b6b] leading-relaxed border-t border-[#f0eeeb]">
