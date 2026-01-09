@@ -92,7 +92,7 @@ export default function Faq() {
                 className="bg-white/90 backdrop-blur border border-[#ebe6df] rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
               >
                 <button
-                  className="w-full flex items-center justify-between gap-3 sm:gap-4 text-left px-5 sm:px-6 py-7 sm:py-8"
+                  className="w-full flex items-center justify-between gap-3 sm:gap-4 text-left px-5 sm:px-6 py-8 sm:py-10"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
