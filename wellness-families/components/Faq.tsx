@@ -70,7 +70,7 @@ export default function Faq() {
 
   return (
     <section className="py-16 sm:py-20 md:py-24 bg-[#faf9f7]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-10">
           <p className="text-[#c97d60] uppercase tracking-[0.24em] text-xs sm:text-sm font-semibold mb-3">
             FAQ
@@ -92,11 +92,11 @@ export default function Faq() {
                 className="bg-white/90 backdrop-blur border border-[#ebe6df] rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
               >
                 <button
-                  className="w-full flex items-center justify-between gap-3 sm:gap-4 text-left px-5 sm:px-6 py-4 sm:py-5"
+                  className="w-full flex items-center justify-between gap-3 sm:gap-4 text-left px-5 sm:px-6 py-5 sm:py-6"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-semibold text-[#2c2c2c] leading-snug">
+                  <span className="text-base sm:text-lg font-semibold text-[#2c2c2c] leading-snug flex-1 text-center">
                     {faq.question}
                   </span>
                   <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#f7f2ec] border border-[#e8e2da] flex-shrink-0">
@@ -104,7 +104,7 @@ export default function Faq() {
                   </div>
                 </button>
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 text-sm sm:text-base text-[#5b5b5b] leading-relaxed border-t border-[#f1ebe4]">
+                  <div className="px-5 sm:px-6 pb-6 sm:pb-7 pt-0 text-sm sm:text-base text-[#5b5b5b] leading-relaxed border-t border-[#f1ebe4] text-center">
                     {faq.answer}
                   </div>
                 )}
