@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getBookiaLink } from '@/lib/bookia';
 import Faq from '@/components/Faq';
 
 export const metadata: Metadata = {
@@ -56,6 +57,8 @@ const services = [
 ];
 
 export default function SluzbyPage() {
+  const bookiaLink = getBookiaLink();
+
   return (
     <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,6 +106,16 @@ export default function SluzbyPage() {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-6">
+                    <Link
+                      href={bookiaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-[#6bb8ff] text-white px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-base font-semibold hover:bg-[#4d9be0] transition-all shadow-md hover:shadow-lg hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
+                    >
+                      Rezervovať
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
