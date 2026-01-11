@@ -21,7 +21,7 @@ export default function CennikPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
             Ceny našich služieb
           </h1>
-          <div className="w-24 h-1 bg-[#c97d60] mx-auto"></div>
+          <div className="w-24 h-1 bg-[#6bb8ff] mx-auto"></div>
         </div>
 
         <div className="max-w-3xl mx-auto">
@@ -40,7 +40,7 @@ export default function CennikPage() {
                     <div className="text-lg sm:text-xl font-display text-[#2c2c2c]">{item.title}</div>
                     <p className="text-[#6b6b6b] text-sm sm:text-base">{item.duration}</p>
                   </div>
-                  <div className="text-2xl sm:text-3xl font-display font-bold text-[#c97d60]">{item.price}</div>
+                  <div className="text-2xl sm:text-3xl font-display font-bold text-[#6bb8ff]">{item.price}</div>
                 </li>
               ))}
             </ul>
@@ -49,7 +49,7 @@ export default function CennikPage() {
           <div className="text-center flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center mt-10">
             <Link
               href="/rezervacia"
-              className="inline-block bg-[#c97d60] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
+              className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
             >
               Rezervovať teraz
             </Link>

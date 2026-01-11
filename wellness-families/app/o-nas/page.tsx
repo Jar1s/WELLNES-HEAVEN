@@ -15,7 +15,7 @@ export default function ONasPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
               Poznajte Wellness Heaven
             </h1>
-            <div className="w-24 h-1 bg-[#c97d60] mx-auto"></div>
+            <div className="w-24 h-1 bg-[#6bb8ff] mx-auto"></div>
           </div>
 
           <div className="space-y-8 sm:space-y-12">
@@ -64,7 +64,7 @@ export default function ONasPage() {
             <div className="text-center pt-8">
               <Link
                 href="/rezervacia"
-                className="inline-block bg-[#c97d60] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+                className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105"
               >
                 Rezervovať návštevu
               </Link>

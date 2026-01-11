@@ -111,7 +111,7 @@ export default function Hero() {
         {/* Gradient overlay - multiple layers for better effect */}
         <div className="absolute inset-0 z-30 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#c97d60]/35 via-[#c97d60]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#6bb8ff]/35 via-[#6bb8ff]/20 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
         </div>
@@ -151,7 +151,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <Link
               href="/rezervacia"
-              className="bg-[#c97d60] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center min-h-[44px] flex items-center justify-center touch-manipulation"
+              className="bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center min-h-[44px] flex items-center justify-center touch-manipulation"
             >
               Rezervovať vstup
             </Link>

@@ -35,13 +35,13 @@ export default function Services() {
     <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <p className="text-[#c97d60] text-xs sm:text-sm uppercase tracking-widest mb-3 sm:mb-4 font-medium">
+          <p className="text-[#6bb8ff] text-xs sm:text-sm uppercase tracking-widest mb-3 sm:mb-4 font-medium">
             Naše služby
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
             Služby, ktoré vám ponúkame
           </h2>
-          <div className="w-24 h-1 bg-[#c97d60] mx-auto"></div>
+          <div className="w-24 h-1 bg-[#6bb8ff] mx-auto"></div>
         </div>
         
         {/* Asymmetric Grid Layout */}
@@ -75,7 +75,7 @@ export default function Services() {
                     <p className="text-white/90 leading-relaxed text-base sm:text-lg mb-4 sm:mb-6">
                       {service.description}
                     </p>
-                    <div className="w-16 h-1 bg-[#c97d60]"></div>
+                    <div className="w-16 h-1 bg-[#6bb8ff]"></div>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function Services() {
         <div className="text-center">
           <Link
             href="/cennik"
-            className="inline-block bg-[#c97d60] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#b86a4d] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
+            className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
           >
             Zobraziť cenník
           </Link>
