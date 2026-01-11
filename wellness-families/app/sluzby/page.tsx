@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getBookiaLink } from '@/lib/bookia';
 import Faq from '@/components/Faq';
 
 export const metadata: Metadata = {
@@ -57,7 +56,10 @@ const services = [
 ];
 
 export default function SluzbyPage() {
-  const bookiaLink = getBookiaLink();
+  const bookiaLink =
+    process.env.NEXT_PUBLIC_BOOKIA_ID && process.env.NEXT_PUBLIC_BOOKIA_ID !== 'YOUR_BOOKIA_ID'
+      ? `https://bookia.sk/rezervacia/${process.env.NEXT_PUBLIC_BOOKIA_ID}`
+      : '#';
 
   return (
     <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
