@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const pricing = [
   { title: 'Izba', duration: '120 min', price: '80 €', image: '/images/Photo 3.png' },
-  { title: 'Wellness bez izby', duration: '120 min', price: '100 €', image: '/images/Photo 1.png' },
+  { title: 'Wellness bez izby', duration: '120 min', price: '100 €', image: '/images/Photo 12.png' },
   { title: 'Komplet', duration: '120 min', price: '150 €', image: '/images/Photo 11.png' },
   { title: 'Komplet', duration: '180 min', price: '200 €', image: '/images/Photo 11.png' },
   { title: 'Komplet', duration: '240 min', price: '250 €', image: '/images/Photo 11.png' },
