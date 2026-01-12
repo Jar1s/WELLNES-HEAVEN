@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const pricing = [
-  { title: 'Izba', duration: '120 min', price: '80 €', image: '/images/Photo 5.png' },
+  { title: 'Izba', duration: '120 min', price: '80 €', image: '/images/Photo 3.png' },
   { title: 'Wellness bez izby', duration: '120 min', price: '100 €', image: '/images/Photo 1.png' },
   { title: 'Komplet', duration: '120 min', price: '150 €', image: '/images/Photo 11.png' },
   { title: 'Komplet', duration: '180 min', price: '200 €', image: '/images/Photo 11.png' },
@@ -11,7 +11,7 @@ const pricing = [
   { title: 'Celá noc 4 os', duration: '9 h', price: '300 €', image: '/images/Photo 9.jpg' },
   { title: 'Celá noc 6 os', duration: '9 h', price: '400 €', image: '/images/Photo 9.jpg' },
   { title: 'Celá noc party', duration: '9 h', price: '500 €', image: '/images/Photo 14.png' },
-  { title: 'Izba', duration: '60 min', price: '50 €', image: '/images/Photo 4.png' },
+  { title: 'Izba', duration: '60 min', price: '50 €', image: '/images/Photo 3.png' },
 ];
 
 export default function CennikPage() {
