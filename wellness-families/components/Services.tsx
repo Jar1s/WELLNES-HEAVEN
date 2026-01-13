@@ -69,14 +69,14 @@ export default function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div>
                 <div className="absolute inset-0 flex items-end">
-                  <div className="p-6 sm:p-8 lg:p-10 text-white w-full">
+                  <div className="p-6 sm:p-8 lg:p-10 text-white w-full text-center lg:text-left">
                     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold mb-3 sm:mb-4 drop-shadow-lg">
                       {service.title}
                     </h3>
                     <p className="text-white/90 leading-relaxed text-base sm:text-lg mb-4 sm:mb-6">
                       {service.description}
                     </p>
-                    <div className="w-16 h-1 bg-[#6bb8ff]"></div>
+                    <div className="w-16 h-1 bg-[#6bb8ff] mx-auto lg:mx-0"></div>
                   </div>
                 </div>
               </div>
