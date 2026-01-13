@@ -32,7 +32,7 @@ export default function Home() {
                   oddychom
                 </span>
               </h2>
-              <div className="w-24 h-1 bg-[#6bb8ff] mb-6 sm:mb-8 mx-auto lg:mx-0"></div>
+              <div className="hidden lg:block w-24 h-1 bg-[#6bb8ff] mb-6 sm:mb-8 mx-auto lg:mx-0"></div>
               <p className="text-base sm:text-lg text-[#6b6b6b] leading-relaxed mb-4 sm:mb-6">
                 Ponúkame súkromný wellness pre dvoch alebo partiu priateľov. Nie sme ako ostatné 
                 hromadné alebo hotelové wellness. Sme privátny wellness kde sa 
@@ -43,14 +43,12 @@ export default function Home() {
                 Sme súkromný wellness, kde nestretnete hromadu ľudí, ale stredom 
                 pozornosti budete iba Vy!
               </p>
-              <div className="flex justify-center lg:justify-start">
-                <Link href="/o-nas" className="block text-center w-full max-w-md">
-                  <span className="inline-flex items-center gap-2 justify-center text-[#2c2c2c] hover:text-[#4d9be0] transition-colors font-semibold min-h-[44px]">
-                    Zistiť viac →
-                  </span>
-                  <div className="mt-2 h-0.5 w-full bg-[#6bb8ff]"></div>
-                </Link>
-              </div>
+              <Link
+                href="/o-nas"
+                className="inline-flex items-center gap-2 justify-center text-[#2c2c2c] hover:text-[#4d9be0] transition-colors font-semibold min-h-[44px] border-b-2 border-[#6bb8ff] pb-1 mx-auto lg:mx-0"
+              >
+                Zistiť viac →
+              </Link>
             </div>
           </div>
         </div>
@@ -67,7 +65,7 @@ export default function Home() {
               <h2 className="text-3xl sm:4xl md:text-5xl lg:text-6xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
                 Noc len pre vašu <span className="text-[#6bb8ff]">partiu</span>
               </h2>
-              <div className="w-24 h-1 bg-[#6bb8ff] mb-6 sm:mb-8"></div>
+              <div className="hidden lg:block w-24 h-1 bg-[#6bb8ff] mb-6 sm:mb-8 mx-auto lg:mx-0"></div>
               <p className="text-base sm:text-lg text-[#6b6b6b] leading-relaxed mb-4 sm:mb-6">
                 Súkromná vírivka, sauna a relax zóna len pre vás – ideálne pre narodeniny, rozlúčku so slobodou
                 alebo večer s priateľmi. Žiadni cudzí hostia, len vaša atmosféra.
@@ -75,14 +73,12 @@ export default function Home() {
               <p className="text-base sm:text-lg text-[#6b6b6b] leading-relaxed mb-6 sm:mb-8">
                 Radi pripravíme priestor, poradíme s občerstvením a hudbou. Užite si celú noc bez časového stresu.
               </p>
-              <div className="flex justify-center lg:justify-start">
-                <Link href="/cennik" className="block text-center w-full max-w-md">
-                  <span className="inline-flex items-center gap-2 justify-center text-[#2c2c2c] hover:text-[#4d9be0] transition-colors font-semibold min-h-[44px]">
-                    Zistiť viac →
-                  </span>
-                  <div className="mt-2 h-0.5 w-full bg-[#6bb8ff]"></div>
-                </Link>
-              </div>
+              <Link
+                href="/cennik"
+                className="inline-flex items-center gap-2 justify-center text-[#2c2c2c] hover:text-[#4d9be0] transition-colors font-semibold min-h-[44px] border-b-2 border-[#6bb8ff] pb-1 mx-auto lg:mx-0"
+              >
+                Zistiť viac →
+              </Link>
             </div>
             <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <Image
