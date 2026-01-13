@@ -72,9 +72,9 @@ export default function Home() {
               </p>
               <Link
                 href="/cennik"
-                className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
+                className="inline-flex items-center gap-2 text-[#2c2c2c] hover:text-[#4d9be0] border-b-2 border-[#6bb8ff] pb-1 font-semibold transition-colors min-h-[44px]"
               >
-                Rezervovať party noc
+                Zistiť viac →
               </Link>
             </div>
             <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
