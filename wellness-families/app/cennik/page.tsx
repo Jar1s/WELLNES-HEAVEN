@@ -63,8 +63,10 @@ export default function CennikPage() {
                     </div>
                     <span className="text-sm text-[#6b6b6b] whitespace-nowrap pt-1">{item.duration}</span>
                   </div>
-                  <div className="text-3xl font-display font-bold text-[#6bb8ff] mb-6 text-center flex-1 flex items-center justify-center">
-                    {item.price}
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="text-3xl font-display font-bold text-[#6bb8ff] text-center">
+                      {item.price}
+                    </div>
                   </div>
                   <div className="mt-auto">
                     <Link
