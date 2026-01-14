@@ -55,15 +55,15 @@ export default function CennikPage() {
                     priority={index < 2}
                   />
                 </div>
-                <div className="p-6 sm:p-7 flex flex-col flex-1">
+                <div className="p-6 sm:p-7 flex flex-col flex-1 gap-4">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-1 min-h-[60px] flex flex-col justify-center">
+                    <div className="space-y-1 min-h-[60px] flex flex-col justify-start">
                       <h3 className="text-xl font-display font-bold text-[#2c2c2c]">{item.title}</h3>
                       {item.subtitle && <p className="text-sm text-[#6b6b6b]">{item.subtitle}</p>}
                     </div>
                     <span className="text-sm text-[#6b6b6b] whitespace-nowrap pt-1">{item.duration}</span>
                   </div>
-                  <div className="flex-1 flex items-center justify-center">
+                  <div className="flex-1 flex items-start justify-center">
                     <div className="text-3xl font-display font-bold text-[#6bb8ff] text-center min-h-[44px] flex items-center justify-center">
                       {item.price}
                     </div>
