@@ -2,16 +2,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const pricing = [
-  { title: 'Izba', duration: '60 min', price: '50 €', image: '/images/Photo 3.png' },
-  { title: 'Izba', duration: '120 min', price: '80 €', image: '/images/Photo 3.png' },
-  { title: 'Wellness bez izby', duration: '120 min', price: '100 €', image: '/images/Photo 12.png' },
-  { title: 'Komplet', duration: '120 min', price: '150 €', image: '/images/Photo 11.png' },
-  { title: 'Komplet', duration: '180 min', price: '200 €', image: '/images/Photo 11.png' },
-  { title: 'Komplet', duration: '240 min', price: '250 €', image: '/images/Photo 11.png' },
-  { title: 'Celá noc 2 os', duration: '9 h', price: '200 €', image: '/images/Photo 9.jpg' },
-  { title: 'Celá noc 4 os', duration: '9 h', price: '300 €', image: '/images/Photo 16.png' },
-  { title: 'Celá noc 6 os', duration: '9 h', price: '400 €', image: '/images/Photo 15.png' },
-  { title: 'Celá noc party', duration: '9 h', price: '500 €', image: '/images/Photo 14.png' },
+  { title: 'PRÍVATNÁ IZBA (2os / 1izba)', duration: '120 minút', price: '80 €', image: '/images/Photo 3.png' },
+  { title: 'PRIVÁTNE IZBY (4os / 2 izby)', duration: '120 minút', price: '100 €', image: '/images/Photo 11.png' },
+  { title: 'PRIVÁTNE IZBY (6os / 3 izby)', duration: '120 minút', price: '120 €', image: '/images/Photo 12.png' },
+  { title: 'PRIVÁTNY WELLNESS BEZ IZBY', duration: '120 minút', price: '100 €', image: '/images/Photo 12.png' },
+  { title: 'PRIVÁTNY WELLNESS S IZBAMI 2os', duration: '120 minút', price: '150 €', image: '/images/Photo 11.png' },
+  { title: 'PRIVÁTNY WELLNESS S IZBAMI 2os', duration: '180 minút', price: '200 €', image: '/images/Photo 11.png' },
+  { title: 'PRIVÁTNY WELLNESS S IZBAMI 2os', duration: '240 minút', price: '250 €', image: '/images/Photo 11.png' },
+  { title: 'WELLNESS ALL NIGHT 2osoby', duration: '9 hodín', price: '200 €', image: '/images/Photo 9.jpg' },
+  { title: 'WELLNESS ALL NIGHT 4osoby', duration: '9 hodín', price: '300 €', image: '/images/Photo 16.png' },
+  { title: 'WELLNESS ALL NIGHT 6osob', duration: '9 hodín', price: '400 €', image: '/images/Photo 15.png' },
+  { title: 'WELLNESS ALL NIGHT PARTY 12osob', duration: '9 hodín', price: '500 €', image: '/images/Photo 14.png' },
+  { title: 'PRIVÁTNA SAUNA', duration: '120 minút', price: '80 €', image: '/images/Photo 4.png' },
+  { title: 'PRIVÁTNA SAUNA', duration: '60 minút', price: '50 €', image: '/images/Photo 4.png' },
 ];
 
 export default function CennikPage() {
