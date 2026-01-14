@@ -18,10 +18,7 @@ const pricing = [
 ];
 
 export default function CennikPage() {
-  const bookiaLink =
-    process.env.NEXT_PUBLIC_BOOKIA_ID && process.env.NEXT_PUBLIC_BOOKIA_ID !== 'YOUR_BOOKIA_ID'
-      ? `https://bookia.sk/rezervacia/${process.env.NEXT_PUBLIC_BOOKIA_ID}`
-      : '#';
+  const bookiaLink = 'https://services.bookio.com/wellness-heaven/widget?lang=sk';
 
   return (
     <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
@@ -66,7 +63,7 @@ export default function CennikPage() {
                     </div>
                     <span className="text-sm text-[#6b6b6b] whitespace-nowrap">{item.duration}</span>
                   </div>
-                  <div className="text-3xl font-display font-bold text-[#6bb8ff] mb-4 text-center">{item.price}</div>
+                  <div className="text-3xl font-display font-bold text-[#6bb8ff] mb-6 text-center min-h-[44px]">{item.price}</div>
                   <div className="mt-auto">
                     <Link
                       href={bookiaLink}
