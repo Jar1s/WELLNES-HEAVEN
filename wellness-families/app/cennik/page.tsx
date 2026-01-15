@@ -9,7 +9,7 @@ const pricing = [
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '120 minút', price: '150 €', image: '/images/Photo 11.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '180 minút', price: '200 €', image: '/images/Photo 11.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '240 minút', price: '250 €', image: '/images/Photo 11.png' },
-  { title: 'WELLNESS ALL NIGHT', subtitle: '2 osoby', duration: '9 hodín', price: '200 €', image: '/images/Photo 9.jpg' },
+  { title: 'WELLNESS ALL NIGHT', subtitle: '2 osoby', duration: '9 hodín', price: '200 €', image: '/images/Photo 17.png' },
   { title: 'WELLNESS ALL NIGHT', subtitle: '4 osoby', duration: '9 hodín', price: '300 €', image: '/images/Photo 16.png' },
   { title: 'WELLNESS ALL NIGHT', subtitle: '6 osôb', duration: '9 hodín', price: '400 €', image: '/images/Photo 15.png' },
   { title: 'WELLNESS ALL NIGHT PARTY', subtitle: '12 osôb', duration: '9 hodín', price: '500 €', image: '/images/Photo 14.png' },
