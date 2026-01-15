@@ -58,7 +58,7 @@ export default function Services() {
             <Link
               key={index}
               href={`/sluzby#${slugify(service.title)}`}
-              className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-black block ${
+              className={`group relative block w-full h-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 bg-black ${
                 index % 2 === 0 ? 'lg:mt-0' : 'lg:mt-8 xl:mt-16'
               }`}
             >
