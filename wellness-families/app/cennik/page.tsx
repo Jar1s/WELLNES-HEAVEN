@@ -13,8 +13,8 @@ const pricing = [
   { title: 'WELLNESS ALL NIGHT', subtitle: '4 osoby', duration: '9 hodín', price: '300 €', image: '/images/Photo 16.png' },
   { title: 'WELLNESS ALL NIGHT', subtitle: '6 osôb', duration: '9 hodín', price: '400 €', image: '/images/Photo 15.png' },
   { title: 'WELLNESS ALL NIGHT PARTY', subtitle: '12 osôb', duration: '9 hodín', price: '500 €', image: '/images/Photo 14.png' },
-  { title: 'PRIVÁTNA SAUNA', duration: '120 minút', price: '80 €', image: '/images/Photo 4.png' },
-  { title: 'PRIVÁTNA SAUNA', duration: '60 minút', price: '60 €', image: '/images/Photo 4.png' },
+  { title: 'PRIVÁTNA SAUNA', duration: '120 minút', price: '80 €', image: '/images/Photo 18.png' },
+  { title: 'PRIVÁTNA SAUNA', duration: '60 minút', price: '60 €', image: '/images/Photo 18.png' },
 ];
 
 export default function CennikPage() {
