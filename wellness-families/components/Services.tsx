@@ -16,7 +16,7 @@ const services: Service[] = [
   {
     title: 'Privátna sauna',
     description: 'Doprajte si nerušený relax v našej súkromnej fínskej saune, ktorá ponúka ideálne podmienky na regeneráciu tela aj mysle.',
-    image: '/images/photo-4.png',
+    image: '/images/Photo 16.png',
   },
   {
     title: 'Relaxačná miestnosť',
