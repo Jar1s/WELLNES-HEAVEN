@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const pricing = [
   { title: 'PRÍVATNÁ IZBA', subtitle: '2 osoby • 1 izba', duration: '120 minút', price: '80 €', image: '/images/Photo 19.png' },
-  { title: 'PRIVÁTNE IZBY', subtitle: '4 osoby • 2 izby', duration: '120 minút', price: '140 €', image: '/images/Photo 11.png' },
-  { title: 'PRIVÁTNE IZBY', subtitle: '6 osôb • 3 izby', duration: '120 minút', price: '180 €', image: '/images/Photo 12.png' },
+  { title: 'PRIVÁTNE IZBY', subtitle: '4 osoby • 2 izby', duration: '120 minút', price: '140 €', image: '/images/Photo 22.png' },
+  { title: 'PRIVÁTNE IZBY', subtitle: '6 osôb • 3 izby', duration: '120 minút', price: '180 €', image: '/images/Photo 22.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 'bez izby', duration: '120 minút', price: '100 €', image: '/images/Photo 12.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '120 minút', price: '150 €', image: '/images/Photo 11.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '180 minút', price: '200 €', image: '/images/Photo 11.png' },
