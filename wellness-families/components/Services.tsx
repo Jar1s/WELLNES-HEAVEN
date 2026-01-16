@@ -21,7 +21,7 @@ const services: Service[] = [
   {
     title: 'Relaxačná miestnosť',
     description: 'Vstúpte do priestoru pokoja, kde sa zastavuje čas. Relaxačná miestnosť je ideálnym miestom na odpočinok po saune, masáži alebo náročnom dni.',
-    image: '/images/Photo 17.png',
+    image: '/images/Photo 21.png',
   },
   {
     title: 'Uvoľnenie pri masáži',
