@@ -20,11 +20,13 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-2FSZQHDQZ0";
 const gadsId = process.env.NEXT_PUBLIC_GADS_ID;
 const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-T7K53SLB";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://wellnes-heaven.vercel.app";
+const shouldLoadGtag = !gtmId && (gaId || gadsId);
 
 export const metadata: Metadata = {
   title: "Wellness Heaven - Privátny Wellness | Bratislava",
@@ -68,9 +70,31 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {gtmId && (
+          <Script id="gtm-init" strategy="afterInteractive">
+            {`
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${gtmId}');
+            `}
+          </Script>
+        )}
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-body antialiased`}>
-        {(gaId || gadsId) && (
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+              aria-hidden="true"
+            ></iframe>
+          </noscript>
+        )}
+        {shouldLoadGtag && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId || gadsId}`}
