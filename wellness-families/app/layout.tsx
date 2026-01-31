@@ -70,8 +70,10 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </head>
+      <body className={`${inter.variable} ${playfair.variable} font-body antialiased`}>
         {gtmId && (
-          <Script id="gtm-init" strategy="afterInteractive">
+          <Script id="gtm-init" strategy="beforeInteractive">
             {`
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -81,8 +83,6 @@ export default function RootLayout({
             `}
           </Script>
         )}
-      </head>
-      <body className={`${inter.variable} ${playfair.variable} font-body antialiased`}>
         {gtmId && (
           <noscript>
             <iframe
