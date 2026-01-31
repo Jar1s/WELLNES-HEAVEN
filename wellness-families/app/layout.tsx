@@ -26,7 +26,7 @@ const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-T7K53SLB";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://wellnes-heaven.vercel.app";
-const shouldLoadGtag = !gtmId && (gaId || gadsId);
+const shouldLoadGtag = Boolean(gaId || gadsId);
 
 export const metadata: Metadata = {
   title: "Wellness Heaven - Privátny Wellness | Bratislava",
