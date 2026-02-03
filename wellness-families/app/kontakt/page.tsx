@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Kontakt - Wellness Heaven | Kontaktné informácie',
-  description: 'Kontaktujte nás na adrese Tomášikova 26, 821 01 Bratislava. Otváracie hodiny: Po-Pi 11:00-22:00, So-Ne 10:00-22:00.',
+  description: 'Kontaktujte nás na adrese Tomášikova 26, 821 01 Bratislava alebo na telefónnom čísle 0952 594 495. Otváracie hodiny: Po-Pi 11:00-22:00, So-Ne 10:00-22:00.',
 };
 
 export default function KontaktPage() {
@@ -39,6 +39,13 @@ export default function KontaktPage() {
                 <p className="text-[#2c2c2c] font-semibold text-sm sm:text-base">Email</p>
                 <a href="mailto:wellnessheavensk@gmail.com" className="text-[#6bb8ff] hover:text-[#4d9be0] transition-colors font-medium text-sm sm:text-base break-all">
                   wellnessheavensk@gmail.com
+                </a>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-[#2c2c2c] font-semibold text-sm sm:text-base">Telefón</p>
+                <a href="tel:0952594495" className="text-[#6bb8ff] hover:text-[#4d9be0] transition-colors font-medium text-sm sm:text-base">
+                  0952 594 495
                 </a>
               </div>
             </div>
