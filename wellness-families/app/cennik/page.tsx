@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import ReservationLink from '@/components/ReservationLink';
 
 const pricing = [
   { title: 'PRÍVATNÁ IZBA', subtitle: '2 osoby • 1 izba', duration: '120 minút', price: '80 €', image: '/images/Photo 19.png' },
@@ -69,14 +69,14 @@ export default function CennikPage() {
                     </div>
                   </div>
                   <div className="mt-auto">
-                    <Link
+                    <ReservationLink
                       href={bookiaLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block w-full bg-[#6bb8ff] text-white px-6 py-3 rounded-full text-base font-semibold hover:bg-[#4d9be0] transition-all shadow-md hover:shadow-lg hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation"
                     >
                       Rezervovať
-                    </Link>
+                    </ReservationLink>
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import Faq from '@/components/Faq';
+import ReservationLink from '@/components/ReservationLink';
 
 export const metadata: Metadata = {
   title: 'Služby - Wellness Heaven | Wellness Bratislava',
@@ -119,14 +120,14 @@ export default function SluzbyPage() {
                     ))}
                   </ul>
                   <div className="mt-6">
-                    <Link
+                    <ReservationLink
                       href={bookiaLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-[#6bb8ff] text-white px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-base font-semibold hover:bg-[#4d9be0] transition-all shadow-md hover:shadow-lg hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
                     >
                       Rezervovať
-                    </Link>
+                    </ReservationLink>
                   </div>
                 </div>
               </div>
@@ -141,12 +142,14 @@ export default function SluzbyPage() {
           >
             Zobraziť cenník
           </Link>
-          <Link
-            href="/rezervacia"
+          <ReservationLink
+            href={bookiaLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-transparent text-[#2c2c2c] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#f5f3f0] transition-all border-2 border-[#2c2c2c] min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
           >
             Rezervovať teraz
-          </Link>
+          </ReservationLink>
         </div>
 
         <div className="mt-14 sm:mt-16 md:mt-20">

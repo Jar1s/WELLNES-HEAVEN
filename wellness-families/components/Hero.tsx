@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { reportConversion } from '@/lib/gtag';
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -156,6 +157,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center min-h-[44px] flex items-center justify-center touch-manipulation"
+              onClick={() => reportConversion()}
             >
               Rezervovať vstup
             </Link>

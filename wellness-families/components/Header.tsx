@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { reportConversion } from '@/lib/gtag';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,6 +82,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#6bb8ff] text-white px-6 py-2.5 rounded-full hover:bg-[#4d9be0] transition-all font-medium text-sm tracking-wide shadow-lg hover:shadow-xl"
+              onClick={() => reportConversion()}
             >
               Rezervácia
             </Link>
@@ -149,7 +151,10 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-[#6bb8ff] text-white px-6 py-3.5 sm:py-3 rounded-full text-center hover:bg-[#4d9be0] transition-all font-medium mt-4 min-h-[44px] flex items-center justify-center touch-manipulation"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                reportConversion();
+                setIsMenuOpen(false);
+              }}
             >
               Rezervácia
             </Link>

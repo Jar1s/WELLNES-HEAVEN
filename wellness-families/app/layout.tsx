@@ -115,6 +115,30 @@ export default function RootLayout({
           </>
         )}
 
+        <Script id="gtag-conversion" strategy="afterInteractive">
+          {`
+            window.gtag_report_conversion = function(url) {
+              var callback = function () {
+                if (typeof(url) !== 'undefined') {
+                  window.location = url;
+                }
+              };
+              if (typeof window.gtag !== 'function') {
+                callback();
+                return false;
+              }
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-17887246397/qrQJCL_ul-gbEL3wptFC',
+                'value': 1.0,
+                'currency': 'EUR',
+                'transaction_id': '',
+                'event_callback': callback
+              });
+              return false;
+            };
+          `}
+        </Script>
+
         {fbPixelId && (
           <>
             <Script id="fb-pixel" strategy="afterInteractive">
