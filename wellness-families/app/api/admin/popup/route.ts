@@ -41,22 +41,6 @@ export async function GET(req: Request) {
 
   try {
     const supabase = getSupabaseServer();
-    const { data: enabledPopup, error: enabledError } = await supabase
-      .from('popups')
-      .select('id,title,body,image_url,link_url,popup_size,enabled,start_at,end_at,updated_at')
-      .eq('enabled', true)
-      .order('updated_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
-
-    if (enabledError) {
-      return NextResponse.json({ error: enabledError.message }, { status: 500 });
-    }
-
-    if (enabledPopup) {
-      return NextResponse.json({ popup: enabledPopup }, { status: 200 });
-    }
-
     const { data, error } = await supabase
       .from('popups')
       .select('id,title,body,image_url,link_url,popup_size,enabled,start_at,end_at,updated_at')

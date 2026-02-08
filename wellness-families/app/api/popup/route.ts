@@ -13,14 +13,9 @@ export async function GET(req: Request) {
     }
 
     const supabase = getSupabasePublic();
-    const now = new Date().toISOString();
-
     const { data, error } = await supabase
       .from('popups')
       .select('id,title,body,image_url,link_url,popup_size,enabled,start_at,end_at,updated_at')
-      .eq('enabled', true)
-      .or(`start_at.is.null,start_at.lte.${now}`)
-      .or(`end_at.is.null,end_at.gte.${now}`)
       .order('updated_at', { ascending: false })
       .limit(1)
       .maybeSingle();
@@ -29,8 +24,21 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return NextResponse.json({ popup: data || null }, { status: 200 });
-  } catch (err) {
+    if (!data) {
+      return NextResponse.json({ popup: null }, { status: 200 });
+    }
+
+    const nowMs = Date.now();
+    const startMs = data.start_at ? Date.parse(data.start_at) : null;
+    const endMs = data.end_at ? Date.parse(data.end_at) : null;
+
+    const isWithinWindow =
+      (startMs === null || startMs <= nowMs) &&
+      (endMs === null || endMs >= nowMs);
+
+    const popup = data.enabled && isWithinWindow ? data : null;
+    return NextResponse.json({ popup }, { status: 200 });
+  } catch {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
