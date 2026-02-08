@@ -16,6 +16,16 @@ const isAuthorized = (req: Request) => {
   return timingSafeEqual(headerBuf, secretBuf);
 };
 
+const getConfigError = () => {
+  const missing: string[] = [];
+  if (!process.env.ADMIN_PASSWORD) missing.push('ADMIN_PASSWORD');
+  if (!process.env.SUPABASE_URL) missing.push('SUPABASE_URL');
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+
+  if (missing.length === 0) return null;
+  return `Missing env: ${missing.join(', ')}`;
+};
+
 const ensureBucket = async (supabase: ReturnType<typeof getSupabaseServer>) => {
   const { data, error } = await supabase.storage.getBucket('popups');
   if (data && !error) {
@@ -25,6 +35,11 @@ const ensureBucket = async (supabase: ReturnType<typeof getSupabaseServer>) => {
 };
 
 export async function POST(req: Request) {
+  const configError = getConfigError();
+  if (configError) {
+    return NextResponse.json({ error: configError }, { status: 500 });
+  }
+
   const ip = getClientIp(req);
   const limit = rateLimit(`admin:upload:${ip}`, 5, 60_000);
   if (!limit.ok) {
@@ -79,7 +94,9 @@ export async function POST(req: Request) {
     const { data } = supabase.storage.from('popups').getPublicUrl(path);
 
     return NextResponse.json({ url: data.publicUrl }, { status: 200 });
-  } catch {
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  } catch (error) {
+    console.error('POST /api/admin/upload failed:', error);
+    const message = error instanceof Error && error.message ? error.message : 'Server error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
