@@ -3,9 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import FloatingPhoneButton from "@/components/FloatingPhoneButton";
+import SiteChrome from "@/components/SiteChrome";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -164,10 +162,8 @@ export default function RootLayout({
           </>
         )}
 
-        <Header />
         <main className="overflow-x-hidden">{children}</main>
-        <Footer />
-        <FloatingPhoneButton />
+        <SiteChrome />
         <Analytics />
       </body>
     </html>

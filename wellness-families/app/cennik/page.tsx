@@ -1,10 +1,52 @@
 import Image from 'next/image';
 import ReservationLink from '@/components/ReservationLink';
 
-const pricing = [
-  { title: 'PRÍVATNÁ IZBA', subtitle: '2 osoby • 1 izba', duration: '120 minút', price: '80 €', image: '/images/Photo 19.png' },
-  { title: 'PRIVÁTNE IZBY', subtitle: '4 osoby • 2 izby', duration: '120 minút', price: '140 €', image: '/images/Photo 22.png' },
-  { title: 'PRIVÁTNE IZBY', subtitle: '6 osôb • 3 izby', duration: '120 minút', price: '180 €', image: '/images/Photo 22.png' },
+type PricingItem = {
+  title: string;
+  subtitle?: string;
+  duration: string;
+  price: string;
+  image: string;
+  details?: string[];
+};
+
+const valentinePackageImage = '/images/Photo 24.jpeg';
+
+const pricing: PricingItem[] = [
+  {
+    title: 'VALENTÍNSKY BALÍČEK',
+    subtitle: 'PREMIUM (2 hod.) / max. 6 osôb',
+    duration: '120 min',
+    price: '120 €',
+    image: valentinePackageImage,
+    details: [
+      '120 min romantického zážitku',
+      'Valentínsky balíček s privátnymi izbami',
+      'Privátna vírivka a sauna',
+      'Privátne izby s romantickou výzdobou',
+      'Fľaša Prosecca, sektu alebo vína',
+      'Obložená syrová misa s ovocím',
+      'Valentínsky darček',
+    ],
+  },
+  {
+    title: 'VALENTÍNSKY BALÍČEK',
+    subtitle: 'EXCLUSIVE (3 hod.) / max. 6 osôb',
+    duration: '180 min',
+    price: '180 €',
+    image: valentinePackageImage,
+    details: [
+      '180 min romantického zážitku',
+      'Valentínsky balíček s privátnymi izbami',
+      'Privátna vírivka a sauna',
+      'Privátne izby s romantickou výzdobou',
+      'Fľaša Prosecca, sektu alebo vína',
+      'Obložená syrová misa s ovocím',
+      'Valentínsky darček',
+    ],
+  },
+  { title: 'PRIVÁTNA SAUNA', duration: '60 minút', price: '60 €', image: '/images/Photo 18.png' },
+  { title: 'PRIVÁTNA SAUNA', duration: '120 minút', price: '80 €', image: '/images/Photo 18.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 'bez izby', duration: '120 minút', price: '100 €', image: '/images/Photo 12.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '120 minút', price: '150 €', image: '/images/Photo 23.png' },
   { title: 'PRIVÁTNY WELLNESS', subtitle: 's izbami • 2 osoby', duration: '180 minút', price: '200 €', image: '/images/Photo 23.png' },
@@ -13,8 +55,9 @@ const pricing = [
   { title: 'WELLNESS ALL NIGHT', subtitle: '4 osoby', duration: '9 hodín', price: '300 €', image: '/images/Photo 16.png' },
   { title: 'WELLNESS ALL NIGHT', subtitle: '6 osôb', duration: '9 hodín', price: '400 €', image: '/images/Photo 15.png' },
   { title: 'WELLNESS ALL NIGHT PARTY', subtitle: '12 osôb', duration: '9 hodín', price: '500 €', image: '/images/Photo 14.png' },
-  { title: 'PRIVÁTNA SAUNA', duration: '120 minút', price: '80 €', image: '/images/Photo 18.png' },
-  { title: 'PRIVÁTNA SAUNA', duration: '60 minút', price: '60 €', image: '/images/Photo 18.png' },
+  { title: 'PRÍVATNÁ IZBA', subtitle: '2 osoby • 1 izba', duration: '120 minút', price: '80 €', image: '/images/Photo 19.png' },
+  { title: 'PRIVÁTNE IZBY', subtitle: '4 osoby • 2 izby', duration: '120 minút', price: '140 €', image: '/images/Photo 22.png' },
+  { title: 'PRIVÁTNE IZBY', subtitle: '6 osôb • 3 izby', duration: '120 minút', price: '180 €', image: '/images/Photo 22.png' },
 ];
 
 export default function CennikPage() {
@@ -31,13 +74,6 @@ export default function CennikPage() {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 sm:mb-12 border border-[#e8e6e3] text-center">
-            <p className="text-[#6b6b6b] text-base sm:text-lg leading-relaxed">
-              Zapožičanie plachty a uteráku v cene.
-              Osušku a župan vám radi zapožičiame za 1,5€, resp. 2,5€.
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {pricing.map((item, index) => (
               <div
@@ -63,12 +99,22 @@ export default function CennikPage() {
                     </div>
                     <span className="text-sm text-[#6b6b6b] whitespace-nowrap pt-1">{item.duration}</span>
                   </div>
-                  <div className="flex-1 flex items-start justify-center">
-                    <div className="text-3xl font-display font-bold text-[#6bb8ff] text-center min-h-[44px] flex items-center justify-center">
-                      {item.price}
+                  {item.details && (
+                    <ul className="space-y-1 text-sm text-[#6b6b6b]">
+                      {item.details.map((detail, detailIndex) => (
+                        <li key={`${item.title}-detail-${detailIndex}`} className="flex items-start gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#6bb8ff]"></span>
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="mt-auto space-y-3">
+                    <div className="flex items-start justify-center">
+                      <div className={`font-display font-bold text-[#6bb8ff] text-center min-h-[44px] flex items-center justify-center ${item.price.length > 10 ? 'text-xl' : 'text-3xl'}`}>
+                        {item.price}
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-auto">
                     <ReservationLink
                       href={bookiaLink}
                       target="_blank"
