@@ -26,17 +26,42 @@ export default function AdminPage() {
   const [form, setForm] = useState<PopupForm>(emptyForm);
   const [message, setMessage] = useState('');
 
+  const getAuthHeader = () => ({
+    'x-admin-password': password.trim(),
+  });
+
+  const getErrorMessage = async (res: Response) => {
+    let apiError = '';
+    try {
+      const body = await res.json();
+      if (body?.error && typeof body.error === 'string') {
+        apiError = body.error;
+      }
+    } catch {
+      // Ignore JSON parse errors and fall back to status based messages.
+    }
+
+    if (res.status === 401) return 'Nesprávne heslo.';
+    if (res.status === 429) return 'Príliš veľa pokusov. Skús znovu o minútu.';
+    if (apiError) return `Chyba: ${apiError}`;
+    return 'Serverová chyba. Skús obnoviť stránku.';
+  };
+
   useEffect(() => {
     const saved = sessionStorage.getItem('admin_password');
-    if (saved) {
-      setPassword(saved);
+    if (saved?.trim()) {
+      setPassword(saved.trim());
       setAuthed(true);
     }
   }, []);
 
   useEffect(() => {
-    if (!authed) return;
-    loadPopup(password);
+    if (!authed || !password.trim()) return;
+    loadPopup(password).catch((err) => {
+      setAuthed(false);
+      sessionStorage.removeItem('admin_password');
+      setMessage(err instanceof Error ? err.message : 'Nepodarilo sa načítať admin dáta.');
+    });
 
     const handleFocus = () => {
       loadPopup(password);
@@ -55,11 +80,11 @@ export default function AdminPage() {
 
   const loadPopup = async (pwd: string) => {
     const res = await fetch('/api/admin/popup', {
-      headers: { 'x-admin-password': pwd },
+      headers: { 'x-admin-password': pwd.trim() },
       cache: 'no-store',
     });
     if (!res.ok) {
-      throw new Error('Unauthorized');
+      throw new Error(await getErrorMessage(res));
     }
     const json = await res.json();
     if (json?.popup) {
@@ -85,12 +110,18 @@ export default function AdminPage() {
     setLoading(true);
     setMessage('');
     try {
-      await loadPopup(password);
-      sessionStorage.setItem('admin_password', password);
+      const normalizedPassword = password.trim();
+      if (!normalizedPassword) {
+        throw new Error('Zadaj heslo.');
+      }
+
+      await loadPopup(normalizedPassword);
+      sessionStorage.setItem('admin_password', normalizedPassword);
+      setPassword(normalizedPassword);
       setAuthed(true);
       setMessage('Načítané.');
-    } catch {
-      setMessage('Nesprávne heslo.');
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : 'Prihlásenie zlyhalo.');
       setAuthed(false);
     } finally {
       setLoading(false);
@@ -105,7 +136,7 @@ export default function AdminPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-admin-password': password,
+          ...getAuthHeader(),
         },
         body: JSON.stringify({
           id: payload.id,
@@ -118,10 +149,12 @@ export default function AdminPage() {
       });
       const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || 'Save failed');
+        throw new Error(json?.error || (await getErrorMessage(res)));
       }
       setForm((prev) => ({ ...prev, id: json.popup?.id || prev.id }));
       setMessage('Uložené.');
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : 'Ukladanie zlyhalo.');
     } finally {
       setLoading(false);
     }
@@ -135,20 +168,20 @@ export default function AdminPage() {
       formData.append('file', file);
       const res = await fetch('/api/admin/upload', {
         method: 'POST',
-        headers: { 'x-admin-password': password },
+        headers: getAuthHeader(),
         body: formData,
       });
       const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || 'Upload failed');
+        throw new Error(json?.error || 'Upload zlyhal.');
       }
 
       const nextForm = { ...form, image_url: json.url };
       setForm(nextForm);
       setMessage('Obrázok nahraný. Ukladám...');
       await savePopup(nextForm);
-    } catch {
-      setMessage('Upload zlyhal.');
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : 'Upload zlyhal.');
       setLoading(false);
     }
   };
