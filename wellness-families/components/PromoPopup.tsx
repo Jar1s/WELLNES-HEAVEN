@@ -74,15 +74,15 @@ export default function PromoPopup() {
             <button
               type="button"
               onClick={handleClose}
-              className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-white shadow-xl ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:bg-black/85 active:scale-[0.98]"
+              className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 p-0 items-center justify-center rounded-full bg-black/78 text-white shadow-xl ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:bg-black/90 active:scale-[0.98]"
               aria-label="Zavrieť"
             >
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6 shrink-0"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
-                strokeWidth={2.75}
+                stroke="white"
+                strokeWidth={3.25}
                 aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />
@@ -94,15 +94,15 @@ export default function PromoPopup() {
           <button
             type="button"
             onClick={handleClose}
-            className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 items-center justify-center rounded-full bg-black text-white shadow-xl ring-1 ring-white/80 transition-colors hover:bg-black/85 active:scale-[0.98]"
+            className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 p-0 items-center justify-center rounded-full bg-black text-white shadow-xl ring-1 ring-white/80 transition-colors hover:bg-black/90 active:scale-[0.98]"
             aria-label="Zavrieť"
           >
             <svg
-              className="h-5 w-5"
+              className="h-6 w-6 shrink-0"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
-              strokeWidth={2.75}
+              stroke="white"
+              strokeWidth={3.25}
               aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />

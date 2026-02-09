@@ -190,6 +190,39 @@ export default function AdminPage() {
     await savePopup(form);
   };
 
+  const handleClearAll = async () => {
+    const confirmed = window.confirm('Naozaj chceš vymazať všetky popup záznamy?');
+    if (!confirmed) return;
+
+    setLoading(true);
+    setMessage('');
+
+    try {
+      const res = await fetch('/api/admin/popup', {
+        method: 'DELETE',
+        headers: getAuthHeader(),
+      });
+
+      let json: { error?: string; deleted?: number } = {};
+      try {
+        json = await res.json();
+      } catch {
+        // Ignore JSON parse errors and use default fallback.
+      }
+
+      if (!res.ok) {
+        throw new Error(json?.error || (await getErrorMessage(res)));
+      }
+
+      setForm(emptyForm);
+      setMessage(`Vymazané: ${json?.deleted ?? 0}`);
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : 'Mazanie zlyhalo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!authed) {
     return (
       <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center px-4">
@@ -243,6 +276,14 @@ export default function AdminPage() {
               className="bg-[#6bb8ff] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#4d9be0] transition-colors"
             >
               {loading ? 'Ukladám...' : 'Uložiť'}
+            </button>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={handleClearAll}
+              className="bg-[#b42318] text-white px-4 py-3 rounded-lg font-semibold hover:bg-[#912018] transition-colors"
+            >
+              Vymazať všetko
             </button>
           </div>
         </div>
