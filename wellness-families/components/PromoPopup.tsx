@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 type PopupData = {
@@ -12,10 +13,17 @@ type PopupData = {
   updated_at?: string | null;
 };
 
+const PRICING_PATH = '/cennik';
+
 export default function PromoPopup() {
+  const router = useRouter();
   const [popup, setPopup] = useState<PopupData | null>(null);
   const [visible, setVisible] = useState(false);
   const [imageOk, setImageOk] = useState(true);
+
+  const getDismissKey = (data: PopupData) => (
+    `promo_popup_dismissed_${data.id}_${data.updated_at ?? 'v1'}`
+  );
 
   useEffect(() => {
     const load = async () => {
@@ -29,7 +37,7 @@ export default function PromoPopup() {
           typeof window !== 'undefined' &&
           new URLSearchParams(window.location.search).get('popupPreview') === '1';
 
-        const key = `promo_popup_dismissed_${data.id}_${data.updated_at ?? 'v1'}`;
+        const key = getDismissKey(data);
         const dismissed = localStorage.getItem(key);
         if (forcePreview || !dismissed) {
           setPopup(data);
@@ -43,91 +51,153 @@ export default function PromoPopup() {
     load();
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+
+    const scrollY = window.scrollY;
+    const html = document.documentElement;
+    const body = document.body;
+
+    const previous = {
+      htmlOverflow: html.style.overflow,
+      htmlOverscrollBehavior: html.style.overscrollBehavior,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      bodyOverscrollBehavior: body.style.overscrollBehavior,
+    };
+
+    html.style.overflow = 'hidden';
+    html.style.overscrollBehavior = 'none';
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.width = '100%';
+    body.style.overscrollBehavior = 'none';
+
+    return () => {
+      html.style.overflow = previous.htmlOverflow;
+      html.style.overscrollBehavior = previous.htmlOverscrollBehavior;
+      body.style.overflow = previous.bodyOverflow;
+      body.style.position = previous.bodyPosition;
+      body.style.top = previous.bodyTop;
+      body.style.width = previous.bodyWidth;
+      body.style.overscrollBehavior = previous.bodyOverscrollBehavior;
+      window.scrollTo(0, scrollY);
+    };
+  }, [visible]);
+
   const handleClose = () => {
-    if (popup?.id) {
-      const key = `promo_popup_dismissed_${popup.id}_${popup.updated_at ?? 'v1'}`;
+    if (popup) {
+      const key = getDismissKey(popup);
       localStorage.setItem(key, '1');
     }
     setVisible(false);
   };
 
+  const handleOpenPricing = () => {
+    handleClose();
+    router.push(PRICING_PATH);
+  };
+
   if (!popup || !visible) return null;
 
-  const sizeClass =
-    popup.popup_size === 'lg'
-      ? 'w-[320px] sm:w-[420px] lg:w-[460px]'
-      : popup.popup_size === 'sm'
-        ? 'w-[240px] sm:w-[280px]'
-        : 'w-[280px] sm:w-[340px]';
-
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[90]">
-      <div className={`${sizeClass} relative bg-white rounded-2xl shadow-2xl border border-[#e8e6e3] overflow-hidden`}>
-        {popup.image_url && imageOk && (
-          <div className="relative w-full bg-black/5">
+    <div
+      className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm overscroll-none"
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Promo notifikácia"
+    >
+      <div className="relative h-full w-full overflow-hidden">
+        {popup.image_url && imageOk ? (
+          <>
             <img
               src={popup.image_url}
               alt={popup.title || 'Promo'}
-              className="w-full h-auto max-h-[70vh] object-contain"
-              onError={() => setImageOk(false)}
+              className="absolute inset-0 h-full w-full object-cover scale-[1.03] blur-[6px] opacity-45"
+              draggable={false}
+              aria-hidden="true"
             />
-            <button
-              type="button"
-              onClick={handleClose}
-              className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 p-0 items-center justify-center rounded-full bg-black/78 text-white shadow-xl ring-1 ring-white/80 backdrop-blur-sm transition-colors hover:bg-black/90 active:scale-[0.98]"
-              aria-label="Zavrieť"
-            >
-              <svg
-                className="h-6 w-6 shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="white"
-                strokeWidth={3.25}
-                aria-hidden="true"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />
-              </svg>
-            </button>
+            <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+
+            <div className="relative z-[2] flex h-full w-full items-center justify-center px-3 py-6 sm:px-6 sm:py-10">
+              <div className="relative inline-flex">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenPricing();
+                  }}
+                  className="block rounded-sm outline-none ring-offset-2 ring-offset-black focus-visible:ring-2 focus-visible:ring-[#6bb8ff]"
+                  aria-label="Otvoriť cenník"
+                >
+                  <img
+                    src={popup.image_url}
+                    alt={popup.title || 'Promo'}
+                    className="h-auto w-auto max-h-[88vh] sm:max-h-[90vh] max-w-[94vw] shadow-2xl"
+                    draggable={false}
+                    onError={() => setImageOk(false)}
+                  />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenPricing();
+                  }}
+                  className="absolute left-1/2 -translate-x-1/2 z-[130] inline-flex min-h-11 items-center justify-center rounded-full bg-[#6bb8ff] px-7 py-3 text-sm sm:text-base font-semibold text-[#11243b] shadow-xl transition-colors hover:bg-[#4d9be0]"
+                  style={{ bottom: 'max(-20px, calc(env(safe-area-inset-bottom) - 10px))' }}
+                >
+                  Zistiť viac
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="h-full w-full flex flex-col items-center justify-center p-6 text-white text-center gap-3 relative z-[2]">
+            {popup.title && <h4 className="text-2xl font-semibold">{popup.title}</h4>}
+            {popup.body && <p className="text-sm text-white/85 max-w-[580px]">{popup.body}</p>}
           </div>
         )}
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClose();
+          }}
+          className="absolute z-[130] inline-flex h-12 w-12 p-0 items-center justify-center rounded-full bg-black/55 text-white shadow-xl ring-1 ring-white/85 backdrop-blur-sm transition-colors hover:bg-black/75"
+          style={{ top: 'calc(env(safe-area-inset-top) + 14px)', right: 14 }}
+          aria-label="Zavrieť"
+        >
+          <svg
+            className="h-6 w-6 shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth={3}
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />
+          </svg>
+        </button>
+
         {(!popup.image_url || !imageOk) && (
           <button
             type="button"
-            onClick={handleClose}
-            className="absolute top-3 right-3 z-[100] inline-flex h-11 w-11 p-0 items-center justify-center rounded-full bg-black text-white shadow-xl ring-1 ring-white/80 transition-colors hover:bg-black/90 active:scale-[0.98]"
-            aria-label="Zavrieť"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleOpenPricing();
+            }}
+            className="absolute left-1/2 -translate-x-1/2 z-[130] inline-flex min-h-11 items-center justify-center rounded-full bg-[#6bb8ff] px-7 py-3 text-sm sm:text-base font-semibold text-[#11243b] shadow-xl transition-colors hover:bg-[#4d9be0]"
+            style={{ bottom: 'calc(env(safe-area-inset-bottom) + 18px)' }}
           >
-            <svg
-              className="h-6 w-6 shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth={3.25}
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />
-            </svg>
+            Zistiť viac
           </button>
-        )}
-        {(popup.title || popup.body || popup.link_url) && (
-          <div className="p-4 space-y-2">
-            {popup.title && (
-              <h4 className="text-sm font-semibold text-[#2c2c2c]">{popup.title}</h4>
-            )}
-            {popup.body && (
-              <p className="text-xs text-[#6b6b6b] leading-relaxed">{popup.body}</p>
-            )}
-            {popup.link_url && (
-              <a
-                href={popup.link_url}
-                className="inline-flex items-center justify-center text-xs font-semibold text-white bg-[#6bb8ff] hover:bg-[#4d9be0] transition-colors rounded-full px-3 py-2"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Zistiť viac
-              </a>
-            )}
-          </div>
         )}
       </div>
     </div>
