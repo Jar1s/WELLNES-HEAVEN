@@ -38,8 +38,8 @@ export default function Footer() {
               <p>Tomášikova 26</p>
               <p>821 01 Bratislava</p>
               <p>
-                <a href="tel:0952594495" className="hover:text-[#6bb8ff] transition-colors">
-                  0952 594 495
+                <a href="tel:+421952594495" className="hover:text-[#6bb8ff] transition-colors">
+                  +421 952 594 495
                 </a>
               </p>
               <p>
