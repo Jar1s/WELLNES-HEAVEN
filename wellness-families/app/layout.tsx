@@ -62,7 +62,12 @@ export default async function RootLayout({
   const locale = normalizeLocale(localeHeader);
 
   return (
-    <html lang={locale} className="scroll-smooth">
+    <html
+      lang={locale}
+      className="scroll-smooth"
+      data-theme="light"
+      suppressHydrationWarning
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -74,6 +79,26 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (function () {
+              try {
+                var media = window.matchMedia('(prefers-color-scheme: dark)');
+                var applyTheme = function () {
+                  document.documentElement.setAttribute('data-theme', media.matches ? 'dark' : 'light');
+                };
+                applyTheme();
+                if (typeof media.addEventListener === 'function') {
+                  media.addEventListener('change', applyTheme);
+                } else if (typeof media.addListener === 'function') {
+                  media.addListener(applyTheme);
+                }
+              } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+              }
+            })();
+          `}
+        </Script>
         {gtmId && (
           <>
             <script

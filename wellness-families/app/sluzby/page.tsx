@@ -84,7 +84,7 @@ export default function SluzbyPage() {
           {services.map((service, index) => (
             <div
                 key={index}
-                className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden ${
+                className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden border border-[#e8e6e3] ${
                   index % 2 === 0 ? '' : 'md:flex-row-reverse'
                 }`}
                 id={service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '')}

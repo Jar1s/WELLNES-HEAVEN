@@ -145,7 +145,7 @@ export default async function SluzbyLocalizedPage({ params }: PageProps) {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden ${
+              className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden border border-[#e8e6e3] ${
                 index % 2 === 0 ? '' : 'md:flex-row-reverse'
               }`}
               id={service.title
