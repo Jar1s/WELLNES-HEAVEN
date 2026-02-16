@@ -67,8 +67,8 @@ export default function Footer({ locale = DEFAULT_LOCALE }: FooterProps) {
               <p>Tomášikova 26</p>
               <p>821 01 Bratislava</p>
               <p>
-                <a href="tel:+421952594495" className="hover:text-[#6bb8ff] transition-colors">
-                  +421 952 594 495
+                <a href="tel:+421952594945" className="hover:text-[#6bb8ff] transition-colors">
+                  +421 952 594 945
                 </a>
               </p>
               <p>

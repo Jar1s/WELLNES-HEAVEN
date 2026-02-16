@@ -6,11 +6,11 @@ type FloatingPhoneButtonProps = {
 
 export default function FloatingPhoneButton({ locale = DEFAULT_LOCALE }: FloatingPhoneButtonProps) {
   const ariaLabel =
-    locale === 'en' ? 'Call +421 952 594 495' : 'Zavolať +421 952 594 495';
+    locale === 'en' ? 'Call +421 952 594 945' : 'Zavolať +421 952 594 945';
 
   return (
     <a
-      href="tel:+421952594495"
+      href="tel:+421952594945"
       aria-label={ariaLabel}
       className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] inline-flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#6bb8ff] text-white shadow-2xl transition-all hover:-translate-y-1 hover:bg-[#4d9be0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6bb8ff] focus-visible:ring-offset-2 focus-visible:ring-offset-white touch-manipulation"
     >

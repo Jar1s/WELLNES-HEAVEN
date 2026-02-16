@@ -10,12 +10,12 @@ const metadataByLocale: Record<Locale, Metadata> = {
   sk: {
     title: 'Kontakt - Wellness Heaven | Kontaktné informácie',
     description:
-      'Kontaktujte nás na adrese Tomášikova 26, 821 01 Bratislava alebo na telefónnom čísle +421 952 594 495. Otváracie hodiny: Po-Pi 11:00-22:00, So-Ne 10:00-22:00.',
+      'Kontaktujte nás na adrese Tomášikova 26, 821 01 Bratislava alebo na telefónnom čísle +421 952 594 945. Otváracie hodiny: Po-Pi 11:00-22:00, So-Ne 10:00-22:00.',
   },
   en: {
     title: 'Contact - Wellness Heaven | Contact Information',
     description:
-      'Contact us at Tomášikova 26, 821 01 Bratislava or by phone +421 952 594 495. Opening hours: Mon-Fri 11:00-22:00, Sat-Sun 10:00-22:00.',
+      'Contact us at Tomášikova 26, 821 01 Bratislava or by phone +421 952 594 945. Opening hours: Mon-Fri 11:00-22:00, Sat-Sun 10:00-22:00.',
   },
 };
 
@@ -106,10 +106,10 @@ export default async function KontaktLocalizedPage({ params }: PageProps) {
               <div className="space-y-2">
                 <p className="text-[#2c2c2c] font-semibold text-sm sm:text-base">{t.phone}</p>
                 <a
-                  href="tel:+421952594495"
+                  href="tel:+421952594945"
                   className="text-[#6bb8ff] hover:text-[#4d9be0] transition-colors font-medium text-sm sm:text-base"
                 >
-                  +421 952 594 495
+                  +421 952 594 945
                 </a>
               </div>
             </div>
