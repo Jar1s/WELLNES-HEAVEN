@@ -117,8 +117,8 @@ export default function Home() {
             </p>
             <Link
               href="/kontakt"
-              className="inline-block bg-[#f5f5f5] text-black !text-black hover:!text-black px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#ededed] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation border border-[#4d9be0]/25"
-              style={{ color: '#000' }}
+              className="inline-block bg-[#f5f5f5] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#ededed] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation border border-[#4d9be0]/25"
+              style={{ color: 'var(--gift-cta-color)' }}
             >
               Kontaktujte nás
             </Link>

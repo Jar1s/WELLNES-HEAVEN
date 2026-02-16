@@ -7,6 +7,7 @@
   --primary-dark: #4d9be0;
   --accent: #9ed4ff;
   --text-light: #6b6b6b;
+  --gift-cta-color: #111827;
   --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
   color-scheme: light;
@@ -332,6 +333,7 @@ a[role="button"] {
   --background: #04070d;
   --foreground: #f3f4f6;
   --text-light: #b9c0cb;
+  --gift-cta-color: #f8fafc;
   color-scheme: dark;
 }
 
