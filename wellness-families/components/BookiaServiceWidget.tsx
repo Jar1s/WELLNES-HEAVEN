@@ -1,8 +1,38 @@
 'use client';
 
 import Link from 'next/link';
+import { DEFAULT_LOCALE, toLocalizedPath, type Locale } from '@/lib/i18n';
 
-export default function BookiaServiceWidget() {
+type BookiaServiceWidgetProps = {
+  locale?: Locale;
+};
+
+const copy = {
+  sk: {
+    title: 'Online rezervácia',
+    description:
+      'Rezervujte si návštevu v našom privátnom wellness centre. Vyberte si dátum, čas a službu, ktorú si chcete rezervovať.',
+    contactReservation: 'Kontaktovať pre rezerváciu',
+    note: 'Poznámka:',
+    noteText: 'Online rezervačný systém dočasne nefunguje.',
+    noteAction:
+      'Rezervujte prosím cez kontaktný formulár alebo email/telefonát na stránke Kontakt.',
+  },
+  en: {
+    title: 'Online Booking',
+    description:
+      'Book your visit to our private wellness center. Choose your preferred date, time and service.',
+    contactReservation: 'Contact us for reservation',
+    note: 'Note:',
+    noteText: 'The online booking system is temporarily unavailable.',
+    noteAction:
+      'Please reserve through the contact form or by email/phone on the Contact page.',
+  },
+} as const;
+
+export default function BookiaServiceWidget({ locale = DEFAULT_LOCALE }: BookiaServiceWidgetProps) {
+  const t = copy[locale];
+
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-[#e8e6e3] p-8 sm:p-12">
       <div className="text-center">
@@ -13,30 +43,27 @@ export default function BookiaServiceWidget() {
             </svg>
           </div>
           <h3 className="text-3xl sm:text-4xl font-display font-bold text-[#2c2c2c] mb-4">
-            Online rezervácia
+            {t.title}
           </h3>
           <p className="text-lg text-[#6b6b6b] mb-8 max-w-2xl mx-auto">
-            Rezervujte si návštevu v našom privátnom wellness centre. 
-            Vyberte si dátum, čas a službu, ktorú si chcete rezervovať.
+            {t.description}
           </p>
         </div>
         
         <div className="space-y-4 mb-8">
           <Link
-            href="/kontakt"
+            href={toLocalizedPath(locale, '/kontakt')}
             className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto min-h-[44px] flex items-center justify-center touch-manipulation"
           >
-            Kontaktovať pre rezerváciu
+            {t.contactReservation}
           </Link>
         </div>
         
         <div className="bg-[#faf9f7] rounded-xl p-6 border border-[#e8e6e3]">
           <p className="text-sm text-[#6b6b6b] mb-2">
-            <strong className="text-[#2c2c2c]">Poznámka:</strong> Online rezervačný systém dočasne nefunguje.
+            <strong className="text-[#2c2c2c]">{t.note}</strong> {t.noteText}
           </p>
-          <p className="text-sm text-[#6b6b6b]">
-            Rezervujte prosím cez kontaktný formulár alebo email/telefonát na stránke Kontakt.
-          </p>
+          <p className="text-sm text-[#6b6b6b]">{t.noteAction}</p>
         </div>
       </div>
     </div>

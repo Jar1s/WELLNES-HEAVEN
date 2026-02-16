@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { DEFAULT_LOCALE, toLocalizedPath, type Locale } from '@/lib/i18n';
 
 type PopupData = {
   id: string;
@@ -13,13 +14,32 @@ type PopupData = {
   updated_at?: string | null;
 };
 
-const PRICING_PATH = '/cennik';
+type PromoPopupProps = {
+  locale?: Locale;
+};
 
-export default function PromoPopup() {
+export default function PromoPopup({ locale = DEFAULT_LOCALE }: PromoPopupProps) {
   const router = useRouter();
   const [popup, setPopup] = useState<PopupData | null>(null);
   const [visible, setVisible] = useState(false);
   const [imageOk, setImageOk] = useState(true);
+  const pricingPath = toLocalizedPath(locale, '/cennik');
+  const t =
+    locale === 'en'
+      ? {
+          dialogLabel: 'Promo notification',
+          openPricing: 'Open pricing',
+          close: 'Close',
+          more: 'Learn more',
+          fallbackAlt: 'Promo',
+        }
+      : {
+          dialogLabel: 'Promo notifikácia',
+          openPricing: 'Otvoriť cenník',
+          close: 'Zavrieť',
+          more: 'Zistiť viac',
+          fallbackAlt: 'Promo',
+        };
 
   const getDismissKey = (data: PopupData) => (
     `promo_popup_dismissed_${data.id}_${data.updated_at ?? 'v1'}`
@@ -98,7 +118,7 @@ export default function PromoPopup() {
 
   const handleOpenPricing = () => {
     handleClose();
-    router.push(PRICING_PATH);
+    router.push(pricingPath);
   };
 
   if (!popup || !visible) return null;
@@ -109,14 +129,14 @@ export default function PromoPopup() {
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
-      aria-label="Promo notifikácia"
+      aria-label={t.dialogLabel}
     >
       <div className="relative h-full w-full overflow-hidden">
         {popup.image_url && imageOk ? (
           <>
             <img
               src={popup.image_url}
-              alt={popup.title || 'Promo'}
+              alt={popup.title || t.fallbackAlt}
               className="absolute inset-0 h-full w-full object-cover scale-[1.03] blur-[6px] opacity-45"
               draggable={false}
               aria-hidden="true"
@@ -132,11 +152,11 @@ export default function PromoPopup() {
                     handleOpenPricing();
                   }}
                   className="block rounded-sm outline-none ring-offset-2 ring-offset-black focus-visible:ring-2 focus-visible:ring-[#6bb8ff]"
-                  aria-label="Otvoriť cenník"
+                  aria-label={t.openPricing}
                 >
                   <img
                     src={popup.image_url}
-                    alt={popup.title || 'Promo'}
+                    alt={popup.title || t.fallbackAlt}
                     className="h-auto w-auto max-h-[88vh] sm:max-h-[90vh] max-w-[94vw] shadow-2xl"
                     draggable={false}
                     onError={() => setImageOk(false)}
@@ -152,7 +172,7 @@ export default function PromoPopup() {
                   className="absolute left-1/2 -translate-x-1/2 z-[130] inline-flex min-h-11 items-center justify-center rounded-full bg-[#6bb8ff] px-7 py-3 text-sm sm:text-base font-semibold text-[#11243b] shadow-xl transition-colors hover:bg-[#4d9be0]"
                   style={{ bottom: 'max(-20px, calc(env(safe-area-inset-bottom) - 10px))' }}
                 >
-                  Zistiť viac
+                  {t.more}
                 </button>
               </div>
             </div>
@@ -172,7 +192,7 @@ export default function PromoPopup() {
           }}
           className="absolute z-[130] inline-flex h-12 w-12 p-0 items-center justify-center rounded-full bg-black/55 text-white shadow-xl ring-1 ring-white/85 backdrop-blur-sm transition-colors hover:bg-black/75"
           style={{ top: 'calc(env(safe-area-inset-top) + 14px)', right: 14 }}
-          aria-label="Zavrieť"
+          aria-label={t.close}
         >
           <svg
             className="h-6 w-6 shrink-0"
@@ -196,7 +216,7 @@ export default function PromoPopup() {
             className="absolute left-1/2 -translate-x-1/2 z-[130] inline-flex min-h-11 items-center justify-center rounded-full bg-[#6bb8ff] px-7 py-3 text-sm sm:text-base font-semibold text-[#11243b] shadow-xl transition-colors hover:bg-[#4d9be0]"
             style={{ bottom: 'calc(env(safe-area-inset-bottom) + 18px)' }}
           >
-            Zistiť viac
+            {t.more}
           </button>
         )}
       </div>

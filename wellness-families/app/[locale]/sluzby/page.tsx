@@ -1,0 +1,237 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import Faq from '@/components/Faq';
+import ReservationLink from '@/components/ReservationLink';
+import { getBookioLang, isLocale, toLocalizedPath, type Locale } from '@/lib/i18n';
+import { notFound } from 'next/navigation';
+
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+const metadataByLocale: Record<Locale, Metadata> = {
+  sk: {
+    title: 'Služby - Wellness Heaven | Wellness Bratislava',
+    description:
+      'Ponúkame privátny wellness, súkromnú saunu, relaxačnú miestnosť a masáže v Bratislave.',
+  },
+  en: {
+    title: 'Services - Wellness Heaven | Wellness Bratislava',
+    description:
+      'We offer private wellness, private sauna, relaxation room and massages in Bratislava.',
+  },
+};
+
+const servicesByLocale = {
+  sk: [
+    {
+      title: 'Privátna vírivka',
+      description:
+        'Užite si súkromnú vírivku, zrelaxujte telo a nechajte stres odplávať. Čisté a privátne prostredie pre dokonalý oddych.',
+      image: '/images/Photo 20.png',
+      features: ['Súkromný priestor', 'Vírivka len pre vás', 'Relaxačné zóny', 'Privátne prostredie'],
+    },
+    {
+      title: 'Privátna sauna',
+      description:
+        'Doprajte si nerušený relax v našej súkromnej fínskej saune, ktorá ponúka ideálne podmienky na regeneráciu tela aj mysle.',
+      image: '/images/Photo 18.png',
+      features: ['Fínska sauna', 'Súkromný priestor', 'Ideálna teplota', 'Regeneračný efekt'],
+    },
+    {
+      title: 'Relaxačná miestnosť',
+      description:
+        'Vstúpte do priestoru pokoja, kde sa zastavuje čas. Relaxačná miestnosť je ideálnym miestom na odpočinok po saune, masáži alebo náročnom dni.',
+      image: '/images/Photo 21.png',
+      features: ['Pohodlné ležadlá', 'Tichá zóna', 'Relaxačná atmosféra', 'Privátne prostredie'],
+    },
+    {
+      title: 'Uvoľnenie pri masáži',
+      description:
+        'Nechajte si chvíľku iba pre seba a doprajte si masáž, uvoľnite stuhnuté svaly a zrelaxujte telo. Vyberte si niektorú z našich masáži, ktoré Vám ponúkame.',
+      image: '/images/Photo 19.png',
+      features: ['Relaxačné masáže', 'Terapeutické masáže', 'Aromaterapia', 'Skúsení maséri'],
+    },
+    {
+      title: 'Celá noc party',
+      description:
+        'Zažite celú noc v súkromnom wellness so svojou partiou. Vírivka, sauna a relax zóny len pre vás.',
+      image: '/images/Photo 14.png',
+      features: ['Súkromný prenájom na noc', 'Vírivka a sauna', 'Priestor pre skupiny', 'Dispozícia len pre vás'],
+    },
+  ],
+  en: [
+    {
+      title: 'Private Jacuzzi',
+      description:
+        'Enjoy a private jacuzzi, relax your body and let stress drift away. A clean and private environment for complete rest.',
+      image: '/images/Photo 20.png',
+      features: ['Private space', 'Jacuzzi only for you', 'Relax zones', 'Fully private environment'],
+    },
+    {
+      title: 'Private Sauna',
+      description:
+        'Enjoy uninterrupted relaxation in our private Finnish sauna with ideal conditions for body and mind recovery.',
+      image: '/images/Photo 18.png',
+      features: ['Finnish sauna', 'Private space', 'Ideal temperature', 'Regeneration effect'],
+    },
+    {
+      title: 'Relax Room',
+      description:
+        'Step into a calm zone where time slows down. The relax room is ideal after sauna, massage, or a demanding day.',
+      image: '/images/Photo 21.png',
+      features: ['Comfortable loungers', 'Quiet zone', 'Relaxing atmosphere', 'Private environment'],
+    },
+    {
+      title: 'Massage Relaxation',
+      description:
+        'Take a moment for yourself with a massage, release stiff muscles and relax deeply. Choose from our massage options.',
+      image: '/images/Photo 19.png',
+      features: ['Relax massages', 'Therapeutic massages', 'Aromatherapy', 'Experienced therapists'],
+    },
+    {
+      title: 'All Night Party',
+      description:
+        'Enjoy the whole night in private wellness with your group. Jacuzzi, sauna and relax zones just for you.',
+      image: '/images/Photo 14.png',
+      features: ['Private all-night rental', 'Jacuzzi and sauna', 'Group-friendly space', 'Venue only for your group'],
+    },
+  ],
+} as const;
+
+const copy = {
+  sk: {
+    title: 'Služby, ktoré vám ponúkame',
+    reserve: 'Rezervovať',
+    showPricing: 'Zobraziť cenník',
+    reserveNow: 'Rezervovať teraz',
+  },
+  en: {
+    title: 'Services We Offer',
+    reserve: 'Book now',
+    showPricing: 'View pricing',
+    reserveNow: 'Book now',
+  },
+} as const;
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return metadataByLocale.sk;
+  return metadataByLocale[locale];
+}
+
+export default async function SluzbyLocalizedPage({ params }: PageProps) {
+  const { locale } = await params;
+  if (!isLocale(locale)) {
+    notFound();
+  }
+
+  const t = copy[locale];
+  const services = servicesByLocale[locale];
+  const bookiaLink = `https://services.bookio.com/wellness-heaven/widget?lang=${getBookioLang(locale)}`;
+
+  return (
+    <div className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-[#faf9f7] min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
+            {t.title}
+          </h1>
+          <div className="w-24 h-1 bg-[#6bb8ff] mx-auto"></div>
+        </div>
+
+        <div className="space-y-12 sm:space-y-16 mb-12 sm:mb-16">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden ${
+                index % 2 === 0 ? '' : 'md:flex-row-reverse'
+              }`}
+              id={service.title
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9\-]/g, '')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '')}
+            >
+              <div
+                className={`grid grid-cols-1 md:grid-cols-2 gap-0 ${
+                  index % 2 === 0 ? '' : 'md:flex-row-reverse'
+                }`}
+              >
+                <div className="relative h-full min-h-[280px] sm:min-h-[320px] md:min-h-[380px] lg:min-h-[420px]">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover object-center w-full h-full"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                  />
+                </div>
+                <div className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#2c2c2c] mb-4 sm:mb-6">
+                    {service.title}
+                  </h2>
+                  <p className="text-base sm:text-lg text-[#6b6b6b] mb-6 sm:mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <ul className="grid grid-cols-1 gap-3 sm:gap-4">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-[#2c2c2c]">
+                        <svg
+                          className="w-5 h-5 sm:w-6 sm:h-6 text-[#6bb8ff] mr-3 flex-shrink-0"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="font-medium text-sm sm:text-base">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <ReservationLink
+                      href={bookiaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-[#6bb8ff] text-white px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-base font-semibold hover:bg-[#4d9be0] transition-all shadow-md hover:shadow-lg hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
+                    >
+                      {t.reserve}
+                    </ReservationLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+          <Link
+            href={toLocalizedPath(locale, '/cennik')}
+            className="inline-block bg-[#6bb8ff] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#4d9be0] transition-all shadow-xl hover:shadow-2xl hover:scale-105 min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
+          >
+            {t.showPricing}
+          </Link>
+          <ReservationLink
+            href={bookiaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-transparent text-[#2c2c2c] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#f5f3f0] transition-all border-2 border-[#2c2c2c] min-h-[44px] flex items-center justify-center touch-manipulation w-full sm:w-auto"
+          >
+            {t.reserveNow}
+          </ReservationLink>
+        </div>
+
+        <div className="mt-14 sm:mt-16 md:mt-20">
+          <Faq locale={locale} />
+        </div>
+      </div>
+    </div>
+  );
+}

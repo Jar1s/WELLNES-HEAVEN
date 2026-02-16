@@ -1,57 +1,117 @@
 'use client';
 
 import { useState } from 'react';
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n';
 
 interface FaqItem {
   question: string;
   answer: string;
 }
 
-const faqs: FaqItem[] = [
-  {
-    question: 'Čo všetko je základom balíčkov?',
-    answer:
-      'Balíček obsahuje súkromnú vírivku, saunu, relaxačnú miestnosť, uterák a plachtu v cene. Župan vieme zapožičať za symbolický poplatok.',
-  },
-  {
-    question: 'Ako je to s občerstvením? Môžeme si priniesť vlastné?',
-    answer:
-      'Môžete si priniesť vlastné nealko, ľahké pochutiny a tortu. Na mieste máme chladničku a základné poháre. Alkohol len v primeranom množstve a s rešpektom k zariadeniu.',
-  },
-  {
-    question: 'Nachádzajú sa v priestoroch kamery?',
-    answer:
-      'Vstupný priestor je monitorovaný kvôli bezpečnosti. V súkromných zónach (vírivka, sauna, relax) kamery nemáme.',
-  },
-  {
-    question: 'Je u nás povolené fajčiť?',
-    answer:
-      'Interiér je nefajčiarsky. Prosíme nefajčiť v priestoroch wellnessu ani pri otvorených oknách.',
-  },
-  {
-    question: 'Môžem prísť autom? Kde môžem parkovať?',
-    answer:
-      'Parkovať môžete v okolí prevádzky na verejných miestach (Tomášikova 26 / Ružinov). Odporúčame prísť o pár minút skôr, aby ste si našli miesto.',
-  },
-  {
-    question: 'Je v priestoroch internet?',
-    answer:
-      'Áno, k dispozícii je bezplatné Wi‑Fi. Heslo vám radi poskytneme na mieste.',
-  },
-  {
-    question: 'Ako je riešené ozvučenie? Vieme si pustiť vlastnú hudbu?',
-    answer:
-      'V miestnosti je Bluetooth ozvučenie. Stačí sa pripojiť vlastným telefónom a spustiť playlist.',
-  },
-  {
-    question: 'Sú nejaké poplatky za znečistenie?',
-    answer:
-      'Ak zostane priestor v štandardnom stave, nič nenavyšujeme. Pri výraznom znečistení si vyhradzujeme poplatok za nadštandardné čistenie (orientačne 30 €).',
-  },
-];
+type FaqProps = {
+  locale?: Locale;
+};
 
-export default function Faq() {
+const faqsByLocale: Record<Locale, FaqItem[]> = {
+  sk: [
+    {
+      question: 'Čo všetko je základom balíčkov?',
+      answer:
+        'Balíček obsahuje súkromnú vírivku, saunu, relaxačnú miestnosť, uterák a plachtu v cene. Župan vieme zapožičať za symbolický poplatok.',
+    },
+    {
+      question: 'Ako je to s občerstvením? Môžeme si priniesť vlastné?',
+      answer:
+        'Môžete si priniesť vlastné nealko, ľahké pochutiny a tortu. Na mieste máme chladničku a základné poháre. Alkohol len v primeranom množstve a s rešpektom k zariadeniu.',
+    },
+    {
+      question: 'Nachádzajú sa v priestoroch kamery?',
+      answer:
+        'Vstupný priestor je monitorovaný kvôli bezpečnosti. V súkromných zónach (vírivka, sauna, relax) kamery nemáme.',
+    },
+    {
+      question: 'Je u nás povolené fajčiť?',
+      answer:
+        'Interiér je nefajčiarsky. Prosíme nefajčiť v priestoroch wellnessu ani pri otvorených oknách.',
+    },
+    {
+      question: 'Môžem prísť autom? Kde môžem parkovať?',
+      answer:
+        'Parkovať môžete v okolí prevádzky na verejných miestach (Tomášikova 26 / Ružinov). Odporúčame prísť o pár minút skôr, aby ste si našli miesto.',
+    },
+    {
+      question: 'Je v priestoroch internet?',
+      answer: 'Áno, k dispozícii je bezplatné Wi‑Fi. Heslo vám radi poskytneme na mieste.',
+    },
+    {
+      question: 'Ako je riešené ozvučenie? Vieme si pustiť vlastnú hudbu?',
+      answer:
+        'V miestnosti je Bluetooth ozvučenie. Stačí sa pripojiť vlastným telefónom a spustiť playlist.',
+    },
+    {
+      question: 'Sú nejaké poplatky za znečistenie?',
+      answer:
+        'Ak zostane priestor v štandardnom stave, nič nenavyšujeme. Pri výraznom znečistení si vyhradzujeme poplatok za nadštandardné čistenie (orientačne 30 €).',
+    },
+  ],
+  en: [
+    {
+      question: 'What is included in the packages?',
+      answer:
+        'Each package includes a private jacuzzi, sauna, relax room, towel, and sheet. Bathrobes are available for a small fee.',
+    },
+    {
+      question: 'Can we bring our own snacks and drinks?',
+      answer:
+        'Yes, you can bring your own non-alcoholic drinks, light snacks, and cake. We provide a fridge and basic glassware. Alcohol is allowed in reasonable amounts.',
+    },
+    {
+      question: 'Are there cameras in the private areas?',
+      answer:
+        'The entrance area is monitored for security. There are no cameras in private zones (jacuzzi, sauna, relax area).',
+    },
+    {
+      question: 'Is smoking allowed?',
+      answer:
+        'The interior is non-smoking. Please do not smoke inside the wellness area or by open windows.',
+    },
+    {
+      question: 'Can I come by car? Where can I park?',
+      answer:
+        'You can park in public spaces around the venue (Tomášikova 26 / Ružinov). We recommend arriving a few minutes earlier.',
+    },
+    {
+      question: 'Is Wi-Fi available?',
+      answer: 'Yes, free Wi-Fi is available. We will provide the password on site.',
+    },
+    {
+      question: 'Do you have sound system? Can we play our own music?',
+      answer:
+        'Yes, the room has Bluetooth audio. Just connect your phone and play your own playlist.',
+    },
+    {
+      question: 'Are there cleaning fees?',
+      answer:
+        'If the space is left in standard condition, there is no extra fee. In case of heavy mess, we may charge an additional cleaning fee (about 30 EUR).',
+    },
+  ],
+};
+
+const copy = {
+  sk: {
+    title: 'Často kladené otázky',
+    description: 'Rýchle odpovede na to, čo riešia hostia pred príchodom.',
+  },
+  en: {
+    title: 'Frequently Asked Questions',
+    description: 'Quick answers to common questions guests ask before arrival.',
+  },
+} as const;
+
+export default function Faq({ locale = DEFAULT_LOCALE }: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const faqs = faqsByLocale[locale];
+  const t = copy[locale];
 
   const Chevron = ({ open }: { open: boolean }) => (
     <svg
@@ -76,11 +136,9 @@ export default function Faq() {
             FAQ
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#2c2c2c] mb-3">
-            Často kladené otázky
+            {t.title}
           </h2>
-          <p className="text-[#6b6b6b] text-base sm:text-lg">
-            Rýchle odpovede na to, čo riešia hostia pred príchodom.
-          </p>
+          <p className="text-[#6b6b6b] text-base sm:text-lg">{t.description}</p>
         </div>
 
         <div className="space-y-3 sm:space-y-4">

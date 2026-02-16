@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
+import { headers } from 'next/headers';
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import SiteChrome from "@/components/SiteChrome";
+import { normalizeLocale } from '@/lib/i18n';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,13 +53,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const localeHeader = (await headers()).get('x-locale');
+  const locale = normalizeLocale(localeHeader);
+
   return (
-    <html lang="sk" className="scroll-smooth">
+    <html lang={locale} className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
